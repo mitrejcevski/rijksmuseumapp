@@ -1,0 +1,51 @@
+[versions]
+    minSdkVersion = "26"
+    targetSdkVersion = "35"
+    javaVersion = "17"
+    agpVersion = "8.8.1"
+    kotlinVersion = "2.0.0"
+    coreKtxVersion = "1.15.0"
+    junitVersion = "1.2.1"
+    espressoCoreVersion = "3.6.1"
+    lifecycleRuntimeKtxVersion = "2.8.7"
+    activityComposeVersion = "1.10.0"
+    composeBomVersion = "2025.02.00"
+    coroutinesVersion = "1.10.1"
+    testJunitJupiterVersion = "5.11.4"
+    truthVersion = "1.1.5"
+    ktorVersion = "3.1.0"
+
+[libraries]
+    androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtxVersion" }
+    androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtxVersion" }
+    androidx-activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activityComposeVersion" }
+    androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "composeBomVersion" }
+    androidx-ui = { group = "androidx.compose.ui", name = "ui" }
+    androidx-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
+    androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling" }
+    androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
+    androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
+    androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+
+    androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
+    androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
+    androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCoreVersion" }
+
+    junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "testJunitJupiterVersion" }
+    jupiter = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "testJunitJupiterVersion" }
+    truth = { module = "com.google.truth:truth", version.ref = "truthVersion" }
+    test-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutinesVersion" }
+    test-ktor-mockserver = { module = "io.ktor:ktor-server-test-host", version.ref = "ktorVersion" }
+
+[bundles]
+    androidx = ["androidx-core-ktx", "androidx-lifecycle-runtime-ktx", "androidx-activity-compose"]
+    compose = ["androidx-ui", "androidx-ui-graphics", "androidx-ui-tooling", "androidx-ui-tooling-preview", "androidx-material3"]
+    compose-debug = ["androidx-ui-tooling", "androidx-ui-test-manifest"]
+    ui-test = ["androidx-ui-test-junit4", "androidx-junit", "androidx-espresso-core"]
+    unit-test = ["jupiter", "truth", "test-coroutines", "test-ktor-mockserver"]
+
+[plugins]
+    android-application = { id = "com.android.application", version.ref = "agpVersion" }
+    kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }
+    kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlinVersion" }
+
