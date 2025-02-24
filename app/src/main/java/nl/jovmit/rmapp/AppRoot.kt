@@ -5,6 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
+import nl.jovmit.rmapp.ui.artdetails.artWorkDetailsScreen
+import nl.jovmit.rmapp.ui.artdetails.navigateToArtWorkDetails
 import nl.jovmit.rmapp.ui.artworks.ArtWorksDestination
 import nl.jovmit.rmapp.ui.artworks.artWorksScreen
 
@@ -16,8 +18,13 @@ fun AppRoot() {
     navController = navController,
     startDestination = ArtWorksDestination
   ) {
+
     artWorksScreen(
-      onNavigateToArtWorkDetails = {}
+      onNavigateToArtWorkDetails = navController::navigateToArtWorkDetails
+    )
+
+    artWorkDetailsScreen(
+      onNavigateBack = navController::navigateUp
     )
   }
 }

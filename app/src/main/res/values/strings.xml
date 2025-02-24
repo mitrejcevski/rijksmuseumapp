@@ -4,4 +4,5 @@
     <string name="label_error_title">Oops!</string>
     <string name="label_error_loading_artworks">Error loading artworks. Try again!</string>
     <string name="label_connection_error">You seem to be offline</string>
+    <string name="cd_navigate_up">Navigate Up</string>
 </resources>
