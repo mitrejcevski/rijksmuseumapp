@@ -21,6 +21,12 @@ class ArtWorksViewModel(
   val screenState: StateFlow<ArtWorksScreenState> = _screenState
 
   fun loadArtWorksList() {
+    if (screenState.value.artWorks.isEmpty()) {
+      refresh()
+    }
+  }
+
+  private fun refresh() {
     viewModelScope.launch {
       setLoading()
       val result = withContext(backgroundDispatcher) {

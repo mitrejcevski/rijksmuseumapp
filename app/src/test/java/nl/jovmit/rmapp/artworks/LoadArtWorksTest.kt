@@ -47,6 +47,20 @@ class LoadArtWorksTest {
   }
 
   @Test
+  fun noReloadWhenItemsLoaded() {
+    val repository = InMemoryArtWorksRepository(listOf(mountain, river))
+    val viewModel = ArtWorksViewModel(repository, dispatcher).apply {
+      loadArtWorksList()
+      repository.setOffline()
+    }
+
+    viewModel.loadArtWorksList()
+
+    assertThat(viewModel.screenState.value)
+      .isEqualTo(ArtWorksScreenState(artWorks = listOf(mountain, river)))
+  }
+
+  @Test
   fun errorLoadingArtWorks() {
     val repository = InMemoryArtWorksRepository().apply { setUnavailable() }
     val viewModel = ArtWorksViewModel(repository, dispatcher)
