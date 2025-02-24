@@ -5,9 +5,9 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.Applier
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
@@ -21,6 +21,8 @@ fun ToolbarTitle(
   Text(
     modifier = modifier,
     text = value,
+    maxLines = 1,
+    overflow = TextOverflow.Ellipsis,
     color = MaterialTheme.colorScheme.onBackground,
   )
 }
@@ -52,6 +54,31 @@ fun ErrorLabel(
 }
 
 @Composable
+fun ArtWorkTitle(
+  modifier: Modifier = Modifier,
+  value: String
+) {
+  Text(
+    modifier = modifier,
+    text = value,
+    color = MaterialTheme.colorScheme.onBackground,
+    style = MaterialTheme.typography.titleLarge
+  )
+}
+
+@Composable
+fun ListItemLabel(
+  modifier: Modifier = Modifier,
+  value: String
+) {
+  Text(
+    modifier = modifier,
+    text = value,
+    color = MaterialTheme.colorScheme.onBackground,
+  )
+}
+
+@Composable
 @PreviewLightDark
 @PreviewFontScale
 private fun PreviewToolbarTitle() {
@@ -63,6 +90,8 @@ private fun PreviewToolbarTitle() {
       ToolbarTitle(value = "Rijks Museum")
       ErrorTitle(value = "Oops!")
       ErrorLabel(value = "Error")
+      ArtWorkTitle(value = "A Long Title")
+      ListItemLabel(value = "The Netherlands")
     }
   }
 }

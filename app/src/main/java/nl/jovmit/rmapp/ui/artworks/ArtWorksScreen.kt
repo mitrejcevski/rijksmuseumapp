@@ -35,7 +35,7 @@ import coil.request.ImageRequest
 import nl.jovmit.rmapp.R
 import nl.jovmit.rmapp.domain.ArtWork
 import nl.jovmit.rmapp.ui.artworks.state.ArtWorksScreenState
-import nl.jovmit.rmapp.ui.composables.Error
+import nl.jovmit.rmapp.ui.composables.ErrorUI
 import nl.jovmit.rmapp.ui.composables.ListLoadingShimmer
 import nl.jovmit.rmapp.ui.composables.ToolbarTitle
 import nl.jovmit.rmapp.ui.composables.toDp
@@ -90,13 +90,13 @@ private fun ArtWorksScreenContent(
           listItemsCount = 5
         )
       } else if (screenState.isErrorLoadingArtWorks) {
-        Error(
+        ErrorUI(
           icon = painterResource(R.drawable.ic_loading_error),
           title = stringResource(R.string.label_error_title),
           message = stringResource(R.string.label_error_loading_artworks)
         )
       } else if (screenState.isOfflineError) {
-        Error(
+        ErrorUI(
           icon = painterResource(R.drawable.ic_connection_error),
           title = stringResource(R.string.label_error_title),
           message = stringResource(R.string.label_connection_error)

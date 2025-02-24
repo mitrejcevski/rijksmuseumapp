@@ -46,9 +46,12 @@ fun ListLoadingShimmer(
 }
 
 @Composable
-private fun ShimmerItem(
+fun ShimmerItem(
   modifier: Modifier = Modifier,
-  colors: List<Color>
+  colors: List<Color> = listOf(
+    MaterialTheme.colorScheme.background,
+    MaterialTheme.colorScheme.onBackground.copy(alpha = .3f)
+  )
 ) {
   val infiniteTransition = rememberInfiniteTransition(label = "background")
   val targetOffset = 1000.dp.toPx()

@@ -5,4 +5,7 @@
     <string name="label_error_loading_artworks">Error loading artworks. Try again!</string>
     <string name="label_connection_error">You seem to be offline</string>
     <string name="cd_navigate_up">Navigate Up</string>
+    <string name="error_art_work_not_found">Art work not found!</string>
+    <string name="label_error_loading_artwork_details">Error loading the artwork</string>
+    <string name="cd_production_place">Production Place</string>
 </resources>

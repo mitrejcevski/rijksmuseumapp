@@ -17,7 +17,7 @@ import nl.jovmit.rmapp.R
 import nl.jovmit.rmapp.ui.theme.RMAppTheme
 
 @Composable
-fun Error(
+fun ErrorUI(
   modifier: Modifier = Modifier,
   icon: Painter,
   title: String,
@@ -45,7 +45,7 @@ fun Error(
 @PreviewLightDark
 private fun ErrorPreview() {
   RMAppTheme {
-    Error(
+    ErrorUI(
       icon = painterResource(R.drawable.ic_connection_error),
       title = stringResource(R.string.label_error_title),
       message = stringResource(R.string.label_connection_error)
