@@ -10,8 +10,10 @@
     lifecycleRuntimeKtxVersion = "2.8.7"
     activityComposeVersion = "1.10.0"
     composeBomVersion = "2025.02.00"
+    composeNavigationVersion = "2.8.7"
     coroutinesVersion = "1.10.1"
     koinVersion = "3.5.3"
+    coilVersion = "2.6.0"
     testJunitJupiterVersion = "5.11.4"
     truthVersion = "1.1.5"
 
@@ -26,6 +28,9 @@
     androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
     androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
     androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
+    androidx-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "composeNavigationVersion" }
+
+    coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilVersion" }
 
     retrofit = { module = "com.squareup.retrofit2:retrofit", version = "2.11.0" }
     retrofit-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version = "1.0.0" }
@@ -47,7 +52,7 @@
 
 [bundles]
     androidx = ["androidx-core-ktx", "androidx-lifecycle-runtime-ktx", "androidx-activity-compose"]
-    compose = ["androidx-ui", "androidx-ui-graphics", "androidx-ui-tooling", "androidx-ui-tooling-preview", "androidx-material3"]
+    compose = ["androidx-ui", "androidx-ui-graphics", "androidx-ui-tooling", "androidx-ui-tooling-preview", "androidx-material3", "androidx-navigation", "coil-compose"]
     compose-debug = ["androidx-ui-tooling", "androidx-ui-test-manifest"]
     retrofit = ["retrofit", "retrofit-serialization-converter", "kotlinx-serialization", "okhttp"]
     koin = ["koin-android", "koin-compose"]
