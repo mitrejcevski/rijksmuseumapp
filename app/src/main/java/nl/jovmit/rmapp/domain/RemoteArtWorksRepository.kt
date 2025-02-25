@@ -1,8 +1,8 @@
 package nl.jovmit.rmapp.domain
 
 import nl.jovmit.rmapp.network.ArtObject
+import nl.jovmit.rmapp.network.HttpException
 import nl.jovmit.rmapp.network.MuseumApi
-import retrofit2.HttpException
 import java.io.IOException
 
 class RemoteArtWorksRepository(
@@ -63,7 +63,7 @@ class RemoteArtWorksRepository(
   }
 
   private fun loadingErrorFrom(httpException: HttpException): ArtWorkDetailsResult {
-    return if (httpException.code() == 404) {
+    return if (httpException.statusCode == 404) {
       ArtWorkDetailsResult.ArtWorkNotFound
     } else {
       ArtWorkDetailsResult.ErrorLoadingArtWork

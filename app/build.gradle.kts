@@ -50,6 +50,7 @@ android {
 
 dependencies {
   implementation(platform(libs.androidx.compose.bom))
+  implementation(platform(libs.ktor.bom))
   implementation(libs.bundles.androidx)
   implementation(libs.bundles.compose)
   implementation(libs.bundles.retrofit)

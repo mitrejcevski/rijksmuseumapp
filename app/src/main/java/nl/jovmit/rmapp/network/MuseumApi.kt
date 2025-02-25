@@ -1,15 +1,29 @@
 package nl.jovmit.rmapp.network
 
-import retrofit2.http.GET
-import retrofit2.http.Path
+import io.ktor.client.HttpClient
+import io.ktor.client.call.body
+import io.ktor.client.request.get
+import io.ktor.http.HttpStatusCode
 
-interface MuseumApi {
+class MuseumApi(
+  private val httpClient: HttpClient
+) {
 
-  @GET("api/en/collection")
-  suspend fun getArtWorksList(): ArtWorksResponse
+  suspend fun getArtWorksList(): ArtWorksResponse {
+    val response = httpClient.get("api/en/collection")
+    return if (response.status == HttpStatusCode.OK) {
+      response.body()
+    } else {
+      throw HttpException(response.status.value)
+    }
+  }
 
-  @GET("api/en/collection/{objectNumber}")
-  suspend fun getArtWorkDetails(
-    @Path("objectNumber") objectNumber: String
-  ): ArtWorkDetailsResponse
+  suspend fun getArtWorkDetails(objectNumber: String): ArtWorkDetailsResponse {
+    val response = httpClient.get("api/en/collection/$objectNumber")
+    return if (response.status == HttpStatusCode.OK) {
+      response.body()
+    } else {
+      throw HttpException(response.status.value)
+    }
+  }
 }

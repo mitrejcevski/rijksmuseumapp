@@ -1,32 +1,40 @@
 package nl.jovmit.rmapp.network
 
-import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.android.Android
+import io.ktor.client.plugins.DefaultRequest
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.defaultRequest
+import io.ktor.client.request.header
+import io.ktor.http.ContentType
+import io.ktor.http.HttpHeaders
+import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
-import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.OkHttpClient
 import org.koin.dsl.module
-import retrofit2.Retrofit
-
-private val JSON = Json { ignoreUnknownKeys = true }
 
 val networkModule = module {
 
-  single<AuthInterceptor> { AuthInterceptor() }
+  single<HttpClient> {
+    HttpClient(Android) {
+      install(ContentNegotiation) {
+        json(Json { prettyPrint = true; ignoreUnknownKeys = true })
+      }
 
-  single<OkHttpClient> {
-    OkHttpClient.Builder()
-      .addInterceptor(get<AuthInterceptor>())
-      .build()
+      install(DefaultRequest) {
+        header(HttpHeaders.ContentType, ContentType.Application.Json)
+      }
+
+      defaultRequest {
+        url("https://www.rijksmuseum.nl/")
+        url {
+          parameters.append("key", "LI6D4NbA")
+        }
+      }
+    }
   }
 
-  single<Retrofit> {
-    Retrofit.Builder()
-      .baseUrl("https://www.rijksmuseum.nl/")
-      .client(get())
-      .addConverterFactory(JSON.asConverterFactory("application/json".toMediaType()))
-      .build()
+  single<MuseumApi> {
+    MuseumApi(httpClient = get())
   }
-
-  single<MuseumApi> { get<Retrofit>().create(MuseumApi::class.java) }
 }
 
