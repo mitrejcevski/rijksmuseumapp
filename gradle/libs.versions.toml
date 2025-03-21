@@ -2,17 +2,18 @@
     minSdkVersion = "26"
     targetSdkVersion = "35"
     javaVersion = "17"
-    agpVersion = "8.8.1"
+    agpVersion = "8.8.2"
     kotlinVersion = "2.0.0"
     coreKtxVersion = "1.15.0"
     junitVersion = "1.2.1"
     espressoCoreVersion = "3.6.1"
     lifecycleRuntimeKtxVersion = "2.8.7"
-    activityComposeVersion = "1.10.0"
-    composeBomVersion = "2025.02.00"
-    composeNavigationVersion = "2.8.7"
+    activityComposeVersion = "1.10.1"
+    composeBomVersion = "2025.03.00"
+    composeNavigationVersion = "2.8.9"
     coroutinesVersion = "1.10.1"
-    koinVersion = "3.5.3"
+    firebaseBomVersion = "33.10.0"
+    koinVersion = "3.5.6"
     coilVersion = "2.6.0"
     testJunitJupiterVersion = "5.11.4"
     truthVersion = "1.1.5"
@@ -39,6 +40,9 @@
 
     koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinVersion" }
     koin-compose = { module = "io.insert-koin:koin-androidx-compose", version.ref = "koinVersion" }
+
+    firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBomVersion"}
+    firebase-messaging = { module = "com.google.firebase:firebase-messaging-ktx" }
 
     androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
     androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
