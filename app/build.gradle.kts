@@ -3,6 +3,7 @@ plugins {
   alias(libs.plugins.kotlin.android)
   alias(libs.plugins.kotlin.compose)
   alias(libs.plugins.kotlin.serialization)
+  alias(libs.plugins.sqldelight)
 }
 
 android {
@@ -55,6 +56,8 @@ dependencies {
   implementation(libs.bundles.retrofit)
   implementation(libs.bundles.koin)
 
+  implementation(libs.sql.delight.android)
+
   debugImplementation(libs.bundles.compose.debug)
 
   androidTestImplementation(platform(libs.androidx.compose.bom))
@@ -63,4 +66,12 @@ dependencies {
   testImplementation(libs.bundles.unit.test)
 
   testRuntimeOnly(libs.junit.jupiter.engine)
+}
+
+sqldelight {
+  databases {
+    create("EventsDb") {
+      packageName.set("nl.jovmit.rmapp")
+    }
+  }
 }

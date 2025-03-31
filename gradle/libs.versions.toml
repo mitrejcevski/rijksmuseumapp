@@ -17,6 +17,7 @@
     coilVersion = "2.6.0"
     testJunitJupiterVersion = "5.11.4"
     truthVersion = "1.1.5"
+    sqlDelightVersion = "2.0.2"
 
 [libraries]
     androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtxVersion" }
@@ -44,6 +45,8 @@
     firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBomVersion"}
     firebase-messaging = { module = "com.google.firebase:firebase-messaging-ktx" }
 
+    sql-delight-android = { module = "app.cash.sqldelight:android-driver", version.ref = "sqlDelightVersion" }
+
     androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
     androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
     androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCoreVersion" }
@@ -68,4 +71,5 @@
     kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }
     kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlinVersion" }
     kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinVersion" }
+    sqldelight = { id = "app.cash.sqldelight", version.ref = "sqlDelightVersion" }
 
