@@ -1,0 +1,16 @@
+CREATE TABLE event (
+  event_id INTEGER PRIMARY KEY NOT NULL,
+  event_name TEXT NOT NULL
+);
+
+selectAll:
+SELECT *
+FROM event;
+
+insert:
+INSERT INTO event (event_id, event_name)
+VALUES (?, ?);
+
+insertFullPlayerObject:
+INSERT INTO event(event_id, event_name)
+VALUES ?;

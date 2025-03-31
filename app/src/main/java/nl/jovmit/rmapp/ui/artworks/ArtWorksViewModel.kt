@@ -2,25 +2,30 @@ package nl.jovmit.rmapp.ui.artworks
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import app.cash.sqldelight.db.SqlDriver
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import nl.jovmit.rmapp.Event
+import nl.jovmit.rmapp.EventsQueries
 import nl.jovmit.rmapp.domain.ArtWorksRepository
 import nl.jovmit.rmapp.domain.ArtWorksResult
 import nl.jovmit.rmapp.ui.artworks.state.ArtWorksScreenState
 
 class ArtWorksViewModel(
   private val artWorksRepository: ArtWorksRepository,
-  private val backgroundDispatcher: CoroutineDispatcher
+  private val backgroundDispatcher: CoroutineDispatcher,
+  private val eventsQueries: EventsQueries,
 ) : ViewModel() {
 
   private val _screenState = MutableStateFlow(ArtWorksScreenState())
   val screenState: StateFlow<ArtWorksScreenState> = _screenState
 
   fun loadArtWorksList() {
+    eventsQueries.insertFullPlayerObject(Event(1, "My First Event"))
     if (screenState.value.artWorks.isEmpty()) {
       refresh()
     }

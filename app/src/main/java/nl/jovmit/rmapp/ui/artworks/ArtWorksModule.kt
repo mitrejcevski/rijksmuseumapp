@@ -8,7 +8,8 @@ val artWorksModule = module {
   viewModel<ArtWorksViewModel> {
     ArtWorksViewModel(
       artWorksRepository = get(),
-      backgroundDispatcher = get()
+      backgroundDispatcher = get(),
+      eventsQueries = get()
     )
   }
 }
