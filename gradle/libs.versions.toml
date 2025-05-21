@@ -76,4 +76,4 @@
     kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlinVersion" }
     kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinVersion" }
     ksp = { id = "com.google.devtools.ksp", version = "2.0.21-1.0.27" }
-
+    room = { id = "androidx.room", version.ref = "roomVersion" }

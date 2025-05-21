@@ -15,7 +15,7 @@ class NotesViewModel(
         val number = Random.nextInt(100)
         val title = "Note $number"
         val content = "Note Content $number"
-        val note = Note(noteId = number, title = title, content = content)
+        val note = Note(noteId = number, title = title, content = content, favorite = 0)
 
         viewModelScope.launch {
             notesDao.insert(note)

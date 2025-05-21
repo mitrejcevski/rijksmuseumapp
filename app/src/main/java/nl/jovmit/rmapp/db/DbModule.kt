@@ -7,6 +7,7 @@ val dbModule = module {
 
     single<NotesDatabase> {
         Room.databaseBuilder(get(), NotesDatabase::class.java, "notes.db")
+            .addMigrations(MIGRATION_1_2)
             .build()
     }
 
