@@ -15,6 +15,7 @@
     firebaseBomVersion = "33.10.0"
     koinVersion = "3.5.6"
     coilVersion = "2.6.0"
+    roomVersion = "2.7.1"
     testJunitJupiterVersion = "5.11.4"
     truthVersion = "1.1.5"
 
@@ -44,6 +45,11 @@
     firebase-bom = { module = "com.google.firebase:firebase-bom", version.ref = "firebaseBomVersion"}
     firebase-messaging = { module = "com.google.firebase:firebase-messaging-ktx" }
 
+    room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomVersion"  }
+    room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomVersion" }
+    room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomVersion" }
+    room-testing = { module = "androidx.room:room-testing", version.ref = "roomVersion" }
+
     androidx-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
     androidx-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
     androidx-espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCoreVersion" }
@@ -60,6 +66,7 @@
     compose-debug = ["androidx-ui-tooling", "androidx-ui-test-manifest"]
     retrofit = ["retrofit", "retrofit-serialization-converter", "kotlinx-serialization", "okhttp"]
     koin = ["koin-android", "koin-compose"]
+    room = ["room-runtime", "room-ktx"]
     ui-test = ["androidx-ui-test-junit4", "androidx-junit", "androidx-espresso-core"]
     unit-test = ["jupiter", "truth", "test-coroutines", "test-mock-web-server"]
 
@@ -68,4 +75,5 @@
     kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlinVersion" }
     kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlinVersion" }
     kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlinVersion" }
+    ksp = { id = "com.google.devtools.ksp", version = "2.0.21-1.0.27" }
 

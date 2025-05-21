@@ -4,7 +4,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import nl.jovmit.rmapp.notes.NotesDestination
+import nl.jovmit.rmapp.notes.NotesScreen
+import nl.jovmit.rmapp.notes.notesScreen
 import nl.jovmit.rmapp.ui.artdetails.artWorkDetailsScreen
 import nl.jovmit.rmapp.ui.artdetails.navigateToArtWorkDetails
 import nl.jovmit.rmapp.ui.artworks.ArtWorksDestination
@@ -16,8 +20,10 @@ fun AppRoot() {
   NavHost(
     modifier = Modifier.fillMaxSize(),
     navController = navController,
-    startDestination = ArtWorksDestination
+    startDestination = NotesDestination
   ) {
+
+    notesScreen()
 
     artWorksScreen(
       onNavigateToArtWorkDetails = navController::navigateToArtWorkDetails
