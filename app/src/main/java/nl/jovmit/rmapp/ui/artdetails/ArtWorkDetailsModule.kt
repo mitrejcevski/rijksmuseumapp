@@ -9,7 +9,6 @@ val artWorkDetailsModule = module {
     ArtWorkDetailsViewModel(
       artWorksRepository = get(),
       backgroundDispatcher = get(),
-      savedStateHandle = get()
     )
   }
 }

@@ -10,7 +10,7 @@
     lifecycleRuntimeKtxVersion = "2.9.0"
     activityComposeVersion = "1.10.1"
     composeBomVersion = "2025.05.01"
-    composeNavigationVersion = "2.9.0"
+    navigation3Version = "1.0.0-alpha02"
     coroutinesVersion = "1.10.1"
     firebaseBomVersion = "33.14.0"
     koinVersion = "3.5.6"
@@ -29,7 +29,10 @@
     androidx-ui-tooling-preview = { group = "androidx.compose.ui", name = "ui-tooling-preview" }
     androidx-ui-test-manifest = { group = "androidx.compose.ui", name = "ui-test-manifest" }
     androidx-material3 = { group = "androidx.compose.material3", name = "material3" }
-    androidx-navigation = { module = "androidx.navigation:navigation-compose", version.ref = "composeNavigationVersion" }
+
+    androidx-navigation3-runtime = { module = "androidx.navigation3:navigation3-runtime", version.ref = "navigation3Version"}
+    androidx-navigation3-ui = { module = "androidx.navigation3:navigation3-ui", version.ref = "navigation3Version"}
+    andoridx-navigation3-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-navigation3", version = "1.0.0-alpha01"}
 
     coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilVersion" }
 
@@ -56,8 +59,9 @@
 
 [bundles]
     androidx = ["androidx-core-ktx", "androidx-lifecycle-runtime-ktx", "androidx-activity-compose"]
-    compose = ["androidx-ui", "androidx-ui-graphics", "androidx-ui-tooling", "androidx-ui-tooling-preview", "androidx-material3", "androidx-navigation", "coil-compose"]
+    compose = ["androidx-ui", "androidx-ui-graphics", "androidx-ui-tooling", "androidx-ui-tooling-preview", "androidx-material3", "coil-compose"]
     compose-debug = ["androidx-ui-tooling", "androidx-ui-test-manifest"]
+    navigation = ["androidx-navigation3-runtime", "androidx-navigation3-ui", "andoridx-navigation3-viewmodel"]
     retrofit = ["retrofit", "retrofit-serialization-converter", "kotlinx-serialization", "okhttp"]
     koin = ["koin-android", "koin-compose"]
     ui-test = ["androidx-ui-test-junit4", "androidx-junit", "androidx-espresso-core"]

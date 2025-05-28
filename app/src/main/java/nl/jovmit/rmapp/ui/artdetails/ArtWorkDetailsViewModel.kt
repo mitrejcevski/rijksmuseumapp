@@ -17,15 +17,12 @@ import nl.jovmit.rmapp.ui.artdetails.state.ArtWorkDetailsScreenState
 class ArtWorkDetailsViewModel(
   private val artWorksRepository: ArtWorksRepository,
   private val backgroundDispatcher: CoroutineDispatcher,
-  savedStateHandle: SavedStateHandle
 ) : ViewModel() {
-
-  private val objectNumber = savedStateHandle.get<String>("objectNumber") ?: ""
 
   private val _screenState = MutableStateFlow(ArtWorkDetailsScreenState())
   val screenState: StateFlow<ArtWorkDetailsScreenState> = _screenState
 
-  fun loadArtWorkDetails() {
+  fun loadArtWorkDetails(objectNumber: String) {
     viewModelScope.launch {
       setLoading()
       val result = withContext(backgroundDispatcher) {

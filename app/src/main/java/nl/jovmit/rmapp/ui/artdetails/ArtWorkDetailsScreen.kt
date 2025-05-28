@@ -48,12 +48,13 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun ArtWorkDetailsScreen(
   viewModel: ArtWorkDetailsViewModel = koinViewModel(),
+  objectNumber: String,
   onNavigateBack: () -> Unit
 ) {
   val state by viewModel.screenState.collectAsStateWithLifecycle()
 
   LaunchedEffect(Unit) {
-    viewModel.loadArtWorkDetails()
+    viewModel.loadArtWorkDetails(objectNumber)
   }
 
   ArtWorkDetailsScreenContent(

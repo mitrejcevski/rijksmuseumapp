@@ -54,6 +54,7 @@ dependencies {
   implementation(libs.bundles.compose)
   implementation(libs.bundles.retrofit)
   implementation(libs.bundles.koin)
+  implementation(libs.bundles.navigation)
 
   debugImplementation(libs.bundles.compose.debug)
 
