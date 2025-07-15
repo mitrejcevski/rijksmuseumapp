@@ -6,12 +6,10 @@ import androidx.compose.animation.core.spring
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -39,7 +37,7 @@ fun AvatarsList(
   modifier: Modifier = Modifier,
   avatars: List<String>
 ) {
-  val size = 50.dp
+  val size = 90.dp
   var offset = 0.dp
   var isSpread by remember { mutableStateOf(false) }
   val factor by animateFloatAsState(
@@ -81,7 +79,7 @@ private fun Avatar(
         drawContent()
         drawCircle(
           color = Color.White,
-          style = Stroke(5f),
+          style = Stroke(10f),
           blendMode = BlendMode.Clear
         )
       }
@@ -97,9 +95,7 @@ private fun PreviewAvatarsList() {
   RMAppTheme {
     Box(
       modifier = Modifier
-        .padding(top = 150.dp)
-        .fillMaxWidth()
-        .height(100.dp)
+        .fillMaxSize()
         .background(
           brush = Brush.horizontalGradient(
             colors = listOf(Color(0xFF673AB7), Color(0xFFF44336))
@@ -108,14 +104,14 @@ private fun PreviewAvatarsList() {
       contentAlignment = Alignment.Center
     ) {
       AvatarsList(
-        modifier = Modifier.width(250.dp),
+        modifier = Modifier.fillMaxWidth(),
         avatars = listOf(
           "https://randomuser.me/api/portraits/thumb/men/10.jpg",
           "https://randomuser.me/api/portraits/thumb/men/11.jpg",
           "https://randomuser.me/api/portraits/thumb/men/18.jpg",
           "https://randomuser.me/api/portraits/thumb/men/20.jpg",
           "https://randomuser.me/api/portraits/thumb/men/21.jpg",
-          "https://randomuser.me/api/portraits/thumb/men/44.jpg"
+          "https://randomuser.me/api/portraits/thumb/men/44.jpg",
         )
       )
     }
