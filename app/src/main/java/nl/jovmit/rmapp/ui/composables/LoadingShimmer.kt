@@ -22,7 +22,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import nl.jovmit.rmapp.ui.theme.RMAppTheme
+import nl.jovmit.rmapp.ui.theme.AppTheme
 
 @Composable
 fun ListLoadingShimmer(
@@ -85,7 +85,7 @@ fun ShimmerItem(
 @Composable
 @PreviewLightDark
 private fun PreviewLoadingShimmer() {
-  RMAppTheme {
+  AppTheme {
     ShimmerItem(
       modifier = Modifier
         .fillMaxWidth()
@@ -98,7 +98,7 @@ private fun PreviewLoadingShimmer() {
 @Composable
 @PreviewLightDark
 private fun PreviewListLoadingShimmer() {
-  RMAppTheme {
+  AppTheme {
     ListLoadingShimmer(
       listItemsCount = 3
     )

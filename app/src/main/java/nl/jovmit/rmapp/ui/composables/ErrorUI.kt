@@ -14,7 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import nl.jovmit.rmapp.R
-import nl.jovmit.rmapp.ui.theme.RMAppTheme
+import nl.jovmit.rmapp.ui.theme.AppTheme
 
 @Composable
 fun ErrorUI(
@@ -44,7 +44,7 @@ fun ErrorUI(
 @Composable
 @PreviewLightDark
 private fun ErrorPreview() {
-  RMAppTheme {
+  AppTheme {
     ErrorUI(
       icon = painterResource(R.drawable.ic_connection_error),
       title = stringResource(R.string.label_error_title),

@@ -11,7 +11,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.PreviewFontScale
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import nl.jovmit.rmapp.ui.theme.RMAppTheme
+import nl.jovmit.rmapp.ui.theme.AppTheme
 
 @Composable
 fun ToolbarTitle(
@@ -82,7 +82,7 @@ fun ListItemLabel(
 @PreviewLightDark
 @PreviewFontScale
 private fun PreviewToolbarTitle() {
-  RMAppTheme {
+  AppTheme {
     Column(
       modifier = Modifier.background(MaterialTheme.colorScheme.background),
       verticalArrangement = Arrangement.spacedBy(8.dp)

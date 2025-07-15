@@ -39,7 +39,7 @@ import nl.jovmit.rmapp.ui.composables.ErrorUI
 import nl.jovmit.rmapp.ui.composables.ListLoadingShimmer
 import nl.jovmit.rmapp.ui.composables.ToolbarTitle
 import nl.jovmit.rmapp.ui.composables.toDp
-import nl.jovmit.rmapp.ui.theme.RMAppTheme
+import nl.jovmit.rmapp.ui.theme.AppTheme
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -167,7 +167,7 @@ private fun ArtWorkListItem(
 @Composable
 @PreviewLightDark
 private fun ArtWorksScreenLoadingPreview() {
-  RMAppTheme {
+  AppTheme {
     ArtWorksScreenContent(
       screenState = ArtWorksScreenState(isLoading = true),
       onArtWorkClicked = {}
@@ -178,7 +178,7 @@ private fun ArtWorksScreenLoadingPreview() {
 @Composable
 @PreviewLightDark
 private fun ArtWorksScreenPreview() {
-  RMAppTheme {
+  AppTheme {
     ArtWorksScreenContent(
       screenState = ArtWorksScreenState(
         artWorks = listOf(
@@ -195,7 +195,7 @@ private fun ArtWorksScreenPreview() {
 @Composable
 @PreviewLightDark
 private fun ArtWorkScreenLoadingError() {
-  RMAppTheme {
+  AppTheme {
     ArtWorksScreenContent(
       screenState = ArtWorksScreenState(isErrorLoadingArtWorks = true),
       onArtWorkClicked = {}
@@ -206,7 +206,7 @@ private fun ArtWorkScreenLoadingError() {
 @Composable
 @PreviewLightDark
 private fun ArtWorkScreenOfflineError() {
-  RMAppTheme {
+  AppTheme {
     ArtWorksScreenContent(
       screenState = ArtWorksScreenState(isOfflineError = true),
       onArtWorkClicked = {}
