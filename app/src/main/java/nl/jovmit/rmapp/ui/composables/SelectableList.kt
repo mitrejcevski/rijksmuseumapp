@@ -190,7 +190,8 @@ private fun PreviewListItem() {
     Column(
       modifier = Modifier
         .background(AppTheme.colorScheme.background)
-        .padding(AppTheme.size.normal)
+        .padding(AppTheme.size.normal),
+      verticalArrangement = Arrangement.spacedBy(AppTheme.size.small)
     ) {
       SelectableListItem(
         data = DataItem(
