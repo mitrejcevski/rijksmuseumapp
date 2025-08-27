@@ -11,7 +11,7 @@
     activityComposeVersion = "1.10.1"
     composeBomVersion = "2025.05.01"
     composeNavigationVersion = "2.9.0"
-    coroutinesVersion = "1.10.1"
+    coroutinesVersion = "1.10.2"
     firebaseBomVersion = "33.14.0"
     koinVersion = "3.5.6"
     coilVersion = "2.6.0"
