@@ -36,6 +36,7 @@
     retrofit = { module = "com.squareup.retrofit2:retrofit", version = "2.11.0" }
     retrofit-serialization-converter = { module = "com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter", version = "1.0.0" }
     kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version = "1.8.0" }
+    kotlinx-immutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version = "0.4.0" }
     okhttp = { module = "com.squareup.okhttp3:okhttp", version = "4.12.0" }
 
     koin-android = { module = "io.insert-koin:koin-android", version.ref = "koinVersion" }
@@ -56,7 +57,7 @@
 
 [bundles]
     androidx = ["androidx-core-ktx", "androidx-lifecycle-runtime-ktx", "androidx-activity-compose"]
-    compose = ["androidx-ui", "androidx-ui-graphics", "androidx-ui-tooling", "androidx-ui-tooling-preview", "androidx-material3", "androidx-navigation", "coil-compose"]
+    compose = ["androidx-ui", "androidx-ui-graphics", "androidx-ui-tooling", "androidx-ui-tooling-preview", "androidx-material3", "androidx-navigation", "coil-compose", "kotlinx-immutable"]
     compose-debug = ["androidx-ui-tooling", "androidx-ui-test-manifest"]
     retrofit = ["retrofit", "retrofit-serialization-converter", "kotlinx-serialization", "okhttp"]
     koin = ["koin-android", "koin-compose"]
