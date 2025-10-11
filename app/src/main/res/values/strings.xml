@@ -8,4 +8,8 @@
     <string name="error_art_work_not_found">Art work not found!</string>
     <string name="label_error_loading_artwork_details">Error loading the artwork</string>
     <string name="cd_production_place">Production Place</string>
+
+    <string name="terms_and_conditions_full_text">By proceeding you agree with our terms and conditions and our privacy policy</string>
+    <string name="terms_and_conditions">terms and conditions</string>
+    <string name="privacy_policy">privacy policy</string>
 </resources>
