@@ -16,7 +16,7 @@
     koinVersion = "3.5.6"
     coilVersion = "2.6.0"
     testJunitJupiterVersion = "5.11.4"
-    truthVersion = "1.1.5"
+    truthVersion = "1.4.5"
 
 [libraries]
     androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtxVersion" }
