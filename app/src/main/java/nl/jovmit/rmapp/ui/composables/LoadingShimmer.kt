@@ -6,7 +6,9 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -20,6 +22,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TileMode
+import androidx.compose.ui.modifier.modifierLocalConsumer
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import nl.jovmit.rmapp.ui.theme.RMAppTheme
@@ -33,14 +36,27 @@ fun ListLoadingShimmer(
     MaterialTheme.colorScheme.onBackground.copy(alpha = .3f)
   )
 ) {
-  Column(modifier = modifier) {
+  Column(modifier = modifier, verticalArrangement = Arrangement.spacedBy(8.dp)) {
     repeat(listItemsCount) {
-      ShimmerItem(
-        modifier = Modifier
-          .height(96.dp)
-          .fillMaxWidth(),
-        colors = colors
-      )
+      Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
+      ) {
+        ShimmerItem(
+          modifier = Modifier
+            .height(96.dp)
+            .fillMaxWidth()
+            .weight(1f),
+          colors = colors
+        )
+        ShimmerItem(
+          modifier = Modifier
+            .height(96.dp)
+            .fillMaxWidth()
+            .weight(1f),
+          colors = colors
+        )
+      }
     }
   }
 }
@@ -100,7 +116,7 @@ private fun PreviewLoadingShimmer() {
 private fun PreviewListLoadingShimmer() {
   RMAppTheme {
     ListLoadingShimmer(
-      listItemsCount = 3
+      listItemsCount = 5
     )
   }
 }

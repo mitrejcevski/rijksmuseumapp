@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import nl.jovmit.rmapp.nav3.NavRoot
 import nl.jovmit.rmapp.ui.theme.RMAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -13,7 +14,7 @@ class MainActivity : ComponentActivity() {
     enableEdgeToEdge()
     setContent {
       RMAppTheme {
-        AppRoot()
+        NavRoot()
       }
     }
   }

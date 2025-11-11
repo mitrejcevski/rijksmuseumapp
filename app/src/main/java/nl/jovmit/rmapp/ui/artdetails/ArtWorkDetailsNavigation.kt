@@ -15,36 +15,28 @@ import androidx.navigation3.ui.NavDisplay
 import kotlinx.serialization.Serializable
 
 @Serializable
-private data class ArtworkDetailsDestination(
+data class ArtworkDetailsDestination(
   val objectNumber: String
 ) : NavKey
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
-fun EntryProviderScope<Any>.artWorkDetailsScreen(
-  onNavigateBack: () -> Unit
-) {
+fun EntryProviderScope<Any>.artWorkDetailsScreen() {
   entry<ArtworkDetailsDestination>(
     metadata = NavDisplay.transitionSpec {
       slideInVertically(
         initialOffsetY = { it },
-        animationSpec = tween(700)
       ) togetherWith ExitTransition.KeepUntilTransitionsFinished
     } + NavDisplay.popTransitionSpec {
       EnterTransition.None togetherWith slideOutVertically(
         targetOffsetY = { it },
-        animationSpec = tween(700)
       )
     } + NavDisplay.predictivePopTransitionSpec {
       EnterTransition.None togetherWith slideOutVertically(
         targetOffsetY = { it },
-        animationSpec = tween(700)
       )
     } + ListDetailSceneStrategy.detailPane()
   ) { key ->
-    ArtWorkDetailsScreen(
-      objectNumber = key.objectNumber,
-      onNavigateBack = onNavigateBack
-    )
+    ArtWorkDetailsScreen(objectNumber = key.objectNumber)
   }
 }
 

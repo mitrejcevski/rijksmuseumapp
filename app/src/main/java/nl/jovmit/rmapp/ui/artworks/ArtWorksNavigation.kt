@@ -22,7 +22,7 @@ fun EntryProviderScope<Any>.artWorksScreen(
       metadata = ListDetailSceneStrategy.listPane(
         detailPlaceholder = {
           Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-            Text(text = "Heey")
+            Text(text = "Heey! Select Something!")
           }
         }
       )

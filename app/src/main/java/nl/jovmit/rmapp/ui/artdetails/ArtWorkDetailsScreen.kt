@@ -15,7 +15,6 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarDefaults
@@ -49,7 +48,6 @@ import org.koin.androidx.compose.koinViewModel
 fun ArtWorkDetailsScreen(
   viewModel: ArtWorkDetailsViewModel = koinViewModel(),
   objectNumber: String,
-  onNavigateBack: () -> Unit
 ) {
   val state by viewModel.screenState.collectAsStateWithLifecycle()
 
@@ -59,7 +57,6 @@ fun ArtWorkDetailsScreen(
 
   ArtWorkDetailsScreenContent(
     screenState = state,
-    onNavigateBack = onNavigateBack
   )
 }
 
@@ -67,7 +64,6 @@ fun ArtWorkDetailsScreen(
 @Composable
 private fun ArtWorkDetailsScreenContent(
   screenState: ArtWorkDetailsScreenState,
-  onNavigateBack: () -> Unit
 ) {
   Scaffold(
     containerColor = MaterialTheme.colorScheme.background,
@@ -78,14 +74,6 @@ private fun ArtWorkDetailsScreenContent(
         ),
         title = {
           ToolbarTitle(value = screenState.artWork?.title ?: "")
-        },
-        navigationIcon = {
-          IconButton(onClick = onNavigateBack) {
-            Icon(
-              painter = painterResource(R.drawable.ic_arrow_left),
-              contentDescription = stringResource(R.string.cd_navigate_up)
-            )
-          }
         }
       )
     }
@@ -215,7 +203,6 @@ private fun PreviewArtWorkDetailsScreenLoading() {
       screenState = ArtWorkDetailsScreenState(
         isLoading = true
       ),
-      onNavigateBack = {}
     )
   }
 }
@@ -228,7 +215,6 @@ private fun PreviewArtWorkNotFoundDetailsScreen() {
       screenState = ArtWorkDetailsScreenState(
         artWorkNotFoundError = true
       ),
-      onNavigateBack = {}
     )
   }
 }
@@ -255,7 +241,6 @@ private fun PreviewArtWorkDetailsScreen() {
           productionPlaces = listOf("Haarlem, The Netherlands")
         )
       ),
-      onNavigateBack = {}
     )
   }
 }
@@ -268,7 +253,6 @@ private fun PreviewArtWorkDetailsScreenUnavailableError() {
       screenState = ArtWorkDetailsScreenState(
         artWorkLoadingError = true
       ),
-      onNavigateBack = {}
     )
   }
 }
@@ -281,7 +265,6 @@ private fun PreviewArtWorkDetailsScreenOfflineError() {
       screenState = ArtWorkDetailsScreenState(
         offlineError = true
       ),
-      onNavigateBack = {}
     )
   }
 }
