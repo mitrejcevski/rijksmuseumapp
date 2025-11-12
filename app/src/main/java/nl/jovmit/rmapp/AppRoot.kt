@@ -77,5 +77,9 @@ fun AppRoot() {
       scaleIn(initialScale = .9f) togetherWith
         slideOutHorizontally(targetOffsetX = { it })
     },
+    predictivePopTransitionSpec = {
+      scaleIn(initialScale = .9f) togetherWith
+        slideOutHorizontally(targetOffsetX = { it })
+    }
   )
 }

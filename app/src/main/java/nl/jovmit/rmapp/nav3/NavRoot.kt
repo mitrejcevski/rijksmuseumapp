@@ -54,6 +54,7 @@ fun NavRoot() {
           color = Color.Blue.copy(.3f),
           onNavigate = {
             backStack.add(MainDestination.MainRoot)
+            backStack.removeFirstOrNull()
           }
         )
       }
