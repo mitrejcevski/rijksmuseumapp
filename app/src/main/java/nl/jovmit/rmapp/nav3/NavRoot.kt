@@ -1,4 +1,4 @@
-package nl.jovmit.rmapp
+package nl.jovmit.rmapp.nav3
 
 import androidx.compose.animation.scaleIn
 import androidx.compose.animation.scaleOut
@@ -8,29 +8,44 @@ import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
-import nl.jovmit.rmapp.ui.artdetails.artWorkDetailsScreen
-import nl.jovmit.rmapp.ui.artdetails.navigateToArtWorkDetails
-import nl.jovmit.rmapp.ui.artworks.ArtWorksDestination
-import nl.jovmit.rmapp.ui.artworks.artWorksScreen
 
 @Composable
-fun AppRoot() {
-  val navBackStack = rememberNavBackStack(ArtWorksDestination)
-
+fun NavRoot(
+  deepLink: String?
+) {
+  val backStack = rememberNavBackStack(WelcomeDestination)
   NavDisplay(
     modifier = Modifier.fillMaxSize(),
-    backStack = navBackStack,
-    onBack = { navBackStack.removeLastOrNull() },
+    backStack = backStack,
     entryProvider = entryProvider {
-      artWorksScreen(
-        onNavigateToArtWorkDetails = navBackStack::navigateToArtWorkDetails
-      )
-      artWorkDetailsScreen(
-        onNavigateBack = navBackStack::removeLastOrNull
-      )
+      entry<WelcomeDestination> {
+        Screen(
+          label = "Welcome",
+          color = Color.Blue.copy(.3f),
+          onNavigate = {
+            backStack.add(MainDestination.MainRoot)
+            backStack.removeFirstOrNull()
+          }
+        )
+      }
+      entry<MainDestination.MainRoot> {
+        MainScreen(
+          openHomeItemDetails = {
+            backStack.add(HomeItemDetails(it))
+          }
+        )
+      }
+      entry<HomeItemDetails> {
+        Screen(
+          label = "Home Item Details ${it.itemId}",
+          color = Color.Red,
+          onNavigate = {},
+          onBack = { backStack.removeLastOrNull() })
+      }
     },
     transitionSpec = {
       slideInHorizontally(initialOffsetX = { it }) togetherWith
