@@ -5,23 +5,19 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -42,9 +38,7 @@ import nl.jovmit.rmapp.R
 import nl.jovmit.rmapp.domain.ArtWork
 import nl.jovmit.rmapp.ui.artworks.state.ArtWorksScreenState
 import nl.jovmit.rmapp.ui.composables.ErrorUI
-import nl.jovmit.rmapp.ui.composables.ListLoadingShimmer
-import nl.jovmit.rmapp.ui.composables.ToolbarTitle
-import nl.jovmit.rmapp.ui.composables.toDp
+import nl.jovmit.rmapp.ui.composables.GridLoadingShimmer
 import nl.jovmit.rmapp.ui.theme.AppTheme
 import org.koin.androidx.compose.koinViewModel
 
@@ -72,27 +66,20 @@ private fun ArtWorksScreenContent(
   onArtWorkClicked: (objectNumber: String) -> Unit
 ) {
   Scaffold(
+    modifier = Modifier.fillMaxSize(),
     containerColor = MaterialTheme.colorScheme.background,
-    topBar = {
-      CenterAlignedTopAppBar(
-        colors = TopAppBarDefaults.topAppBarColors(
-          containerColor = MaterialTheme.colorScheme.background
-        ),
-        title = {
-          ToolbarTitle(value = stringResource(R.string.label_art_works))
-        }
-      )
-    }
   ) { paddingValues ->
     Box(
       modifier = Modifier
-        .fillMaxSize()
-        .padding(paddingValues),
+        .consumeWindowInsets(paddingValues)
+        .fillMaxSize(),
       contentAlignment = Alignment.Center
     ) {
       if (screenState.isLoading) {
-        ListLoadingShimmer(
-          modifier = Modifier.fillMaxSize(),
+        GridLoadingShimmer(
+          modifier = Modifier
+            .fillMaxSize()
+            .padding(8.dp),
           listItemsCount = 5
         )
       } else if (screenState.isErrorLoadingArtWorks) {
@@ -109,7 +96,9 @@ private fun ArtWorksScreenContent(
         )
       } else {
         ArtWorksList(
-          modifier = Modifier.fillMaxSize(),
+          modifier = Modifier.fillMaxSize()
+            .padding(horizontal = 8.dp),
+          paddingValues = paddingValues,
           screenState = screenState,
           onArtWorkClicked = onArtWorkClicked
         )
@@ -122,15 +111,20 @@ private fun ArtWorksScreenContent(
 private fun ArtWorksList(
   modifier: Modifier = Modifier,
   screenState: ArtWorksScreenState,
+  paddingValues: PaddingValues = PaddingValues(),
   onArtWorkClicked: (objectNumber: String) -> Unit
 ) {
   LazyVerticalGrid(
     modifier = modifier,
     columns = GridCells.Fixed(2),
+    contentPadding = paddingValues,
     horizontalArrangement = Arrangement.spacedBy(AppTheme.size.normal),
     verticalArrangement = Arrangement.spacedBy(AppTheme.size.normal)
   ) {
-    items(items = screenState.artWorks, key = { it.id }) { item ->
+    items(
+      items = screenState.artWorks,
+      key = { it.id }
+    ) { item ->
       ArtWorkListItem(
         modifier = Modifier
           .fillMaxWidth()

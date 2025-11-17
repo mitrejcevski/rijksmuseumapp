@@ -6,7 +6,7 @@ import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable
 
 @Serializable
-private data class ArtworkDetailsDestination(
+data class ArtworkDetailsDestination(
   val objectNumber: String
 ) : NavKey
 

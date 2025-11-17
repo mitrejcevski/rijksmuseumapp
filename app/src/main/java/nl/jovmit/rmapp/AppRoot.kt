@@ -6,31 +6,55 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
+import androidx.navigation3.scene.SinglePaneSceneStrategy
 import androidx.navigation3.ui.NavDisplay
-import nl.jovmit.rmapp.ui.artdetails.artWorkDetailsScreen
-import nl.jovmit.rmapp.ui.artdetails.navigateToArtWorkDetails
+import kotlinx.serialization.Serializable
+import nl.jovmit.rmapp.ui.BottomSheetSceneStrategy
+import nl.jovmit.rmapp.ui.artdetails.ArtWorkDetailsScreen
+import nl.jovmit.rmapp.ui.artdetails.ArtworkDetailsDestination
 import nl.jovmit.rmapp.ui.artworks.ArtWorksDestination
-import nl.jovmit.rmapp.ui.artworks.artWorksScreen
+import nl.jovmit.rmapp.ui.artworks.ArtWorksScreen
+import nl.jovmit.rmapp.ui.composables.CustomBottomSheet
 
+@OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun AppRoot() {
   val navBackStack = rememberNavBackStack(ArtWorksDestination)
+  val bottomSheetSceneStrategy = remember { BottomSheetSceneStrategy<NavKey>() }
+  val oneMoreStrategy = remember { SinglePaneSceneStrategy<NavKey>() }
 
   NavDisplay(
     modifier = Modifier.fillMaxSize(),
     backStack = navBackStack,
+    sceneStrategy = bottomSheetSceneStrategy.then(oneMoreStrategy),
     onBack = { navBackStack.removeLastOrNull() },
     entryProvider = entryProvider {
-      artWorksScreen(
-        onNavigateToArtWorkDetails = navBackStack::navigateToArtWorkDetails
-      )
-      artWorkDetailsScreen(
-        onNavigateBack = navBackStack::removeLastOrNull
-      )
+
+      entry<ArtWorksDestination> {
+        ArtWorksScreen(
+          onNavigateToArtWorkDetails = { navBackStack.add(BottomSheetDestination) }
+        )
+      }
+
+      entry<ArtworkDetailsDestination> {
+        ArtWorkDetailsScreen(
+          onNavigateBack = { navBackStack.removeLastOrNull() }
+        )
+      }
+
+      entry<BottomSheetDestination>(
+        metadata = BottomSheetSceneStrategy.bottomSheet()
+      ) {
+        CustomBottomSheet(onDismissed = navBackStack::removeLastOrNull)
+      }
     },
     transitionSpec = {
       slideInHorizontally(initialOffsetX = { it }) togetherWith
@@ -46,3 +70,6 @@ fun AppRoot() {
     }
   )
 }
+
+@Serializable
+data object BottomSheetDestination : NavKey
