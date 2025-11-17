@@ -4,6 +4,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -38,19 +39,25 @@ fun CustomBottomSheet(
   onDismissed: () -> Unit
 ) {
   val scope = rememberCoroutineScope()
-  fun dismiss() = scope.launch { sheetState.hide() }
-    .invokeOnCompletion {
-      onDismissed()
-    }
+
+  fun dismiss() = scope.launch {
+    sheetState.hide()
+  }.invokeOnCompletion {
+    onDismissed()
+  }
 
   ModalBottomSheet(
+    modifier = Modifier.consumeWindowInsets(
+      PaddingValues(bottom = 64.dp)
+    ),
     sheetState = sheetState,
     onDismissRequest = { dismiss() }
   ) {
     Box(
       modifier = Modifier.fillMaxHeight(),
-      contentAlignment = Alignment.BottomEnd
+      contentAlignment = Alignment.BottomCenter
     ) {
+
       LazyColumn(
         contentPadding = PaddingValues(bottom = 100.dp)
       ) {
@@ -68,10 +75,11 @@ fun CustomBottomSheet(
       Column(
         modifier = Modifier
           .navigationBarsPadding()
+          .offset { IntOffset(x = 0, y = -sheetState.requireOffset().toInt()) }
           .fillMaxWidth()
-          .background(Color.Black)
+          .background(Color(0xff2a2d30))
           .padding(12.dp)
-          .padding(bottom = 50.dp),
+          .padding(bottom = 24.dp),
         horizontalAlignment = Alignment.CenterHorizontally
       ) {
         Button(
