@@ -1,16 +1,16 @@
 package nl.jovmit.rmapp.ui.artworks
 
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
+import androidx.navigation3.runtime.EntryProviderScope
+import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable
 
 @Serializable
-data object ArtWorksDestination
+data object ArtWorksDestination : NavKey
 
-fun NavGraphBuilder.artWorksScreen(
+fun EntryProviderScope<NavKey>.artWorksScreen(
   onNavigateToArtWorkDetails: (objectNumber: String) -> Unit
 ) {
-  composable<ArtWorksDestination> {
+  entry<ArtWorksDestination> {
     ArtWorksScreen(
       onNavigateToArtWorkDetails = onNavigateToArtWorkDetails
     )

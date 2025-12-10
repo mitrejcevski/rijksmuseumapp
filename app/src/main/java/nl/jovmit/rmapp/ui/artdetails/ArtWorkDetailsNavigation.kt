@@ -1,26 +1,26 @@
 package nl.jovmit.rmapp.ui.artdetails
 
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
+import androidx.navigation3.runtime.EntryProviderScope
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavKey
 import kotlinx.serialization.Serializable
 
 @Serializable
 private data class ArtworkDetailsDestination(
   val objectNumber: String
-)
+) : NavKey
 
-fun NavGraphBuilder.artWorkDetailsScreen(
+fun EntryProviderScope<NavKey>.artWorkDetailsScreen(
   onNavigateBack: () -> Unit
 ) {
-  composable<ArtworkDetailsDestination> {
+  entry<ArtworkDetailsDestination> {
     ArtWorkDetailsScreen(
       onNavigateBack = onNavigateBack
     )
   }
 }
 
-fun NavController.navigateToArtWorkDetails(objectNumber: String) {
+fun NavBackStack<NavKey>.navigateToArtWorkDetails(objectNumber: String) {
   val destination = ArtworkDetailsDestination(objectNumber)
-  navigate(destination)
+  add(destination)
 }
