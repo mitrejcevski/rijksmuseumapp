@@ -2,6 +2,7 @@ package nl.jovmit.rmapp.ui.artworks
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.collections.immutable.toPersistentList
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -49,7 +50,7 @@ class ArtWorksViewModel(
   }
 
   private fun onArtWorksLoaded(result: ArtWorksResult.ArtWorksList) {
-    _screenState.update { it.copy(isLoading = false, artWorks = result.artWorks) }
+    _screenState.update { it.copy(isLoading = false, artWorks = result.artWorks.toPersistentList()) }
   }
 
   private fun onErrorLoadingArtWorks() {

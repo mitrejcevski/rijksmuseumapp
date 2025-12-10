@@ -1,5 +1,7 @@
 package nl.jovmit.rmapp.domain
 
+import kotlinx.collections.immutable.ImmutableList
+
 data class ArtWork(
   val links: ArtWorkLinks,
   val id: String,
@@ -8,7 +10,7 @@ data class ArtWork(
   val longTitle: String,
   val headerImage: Image? = null,
   val webImage: Image? = null,
-  val productionPlaces: List<String>
+  val productionPlaces: ImmutableList<String>
 ) {
 
   data class ArtWorkLinks(

@@ -1,5 +1,6 @@
 package nl.jovmit.rmapp.domain
 
+import kotlinx.collections.immutable.toPersistentList
 import nl.jovmit.rmapp.network.ArtObject
 import nl.jovmit.rmapp.network.MuseumApi
 import retrofit2.HttpException
@@ -58,7 +59,7 @@ class RemoteArtWorksRepository(
           url = it.url
         )
       },
-      productionPlaces = productionPlaces
+      productionPlaces = productionPlaces.toPersistentList()
     )
   }
 

@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import kotlinx.collections.immutable.persistentListOf
 import nl.jovmit.rmapp.R
 import nl.jovmit.rmapp.domain.ArtWork
 import nl.jovmit.rmapp.ui.artworks.state.ArtWorksScreenState
@@ -181,7 +182,7 @@ private fun ArtWorksScreenPreview() {
   AppTheme {
     ArtWorksScreenContent(
       screenState = ArtWorksScreenState(
-        artWorks = listOf(
+        artWorks = persistentListOf(
           artWork("1", 1920, 460),
           artWork("2", 1904, 457),
           artWork("3", 1925, 461),
@@ -228,7 +229,7 @@ private fun artWork(id: String, width: Int, height: Int): ArtWork {
     title = "Short Art Work Title",
     longTitle = "",
     webImage = null,
-    productionPlaces = emptyList()
+    productionPlaces = persistentListOf()
   )
 }
 

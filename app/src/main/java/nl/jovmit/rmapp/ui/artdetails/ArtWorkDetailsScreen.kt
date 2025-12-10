@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import kotlinx.collections.immutable.persistentListOf
 import nl.jovmit.rmapp.R
 import nl.jovmit.rmapp.domain.ArtWork
 import nl.jovmit.rmapp.ui.artdetails.state.ArtWorkDetailsScreenState
@@ -251,7 +252,7 @@ private fun PreviewArtWorkDetailsScreen() {
             height = 6132,
             url = ""
           ),
-          productionPlaces = listOf("Haarlem, The Netherlands")
+          productionPlaces = persistentListOf("Haarlem, The Netherlands")
         )
       ),
       onNavigateBack = {}
