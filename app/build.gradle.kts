@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+
 plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.android)
@@ -36,8 +38,11 @@ android {
     targetCompatibility = JavaVersion.toVersion(javaVersion)
   }
 
-  kotlinOptions {
-    jvmTarget = libs.versions.javaVersion.get()
+  kotlin {
+    compilerOptions {
+      val javaVersion = libs.versions.javaVersion.get()
+      jvmTarget.set(JvmTarget.fromTarget(javaVersion))
+    }
   }
 
   testOptions.unitTests {
@@ -54,6 +59,7 @@ dependencies {
   implementation(libs.bundles.compose)
   implementation(libs.bundles.retrofit)
   implementation(libs.bundles.koin)
+  implementation(libs.bundles.navigation)
 
   debugImplementation(libs.bundles.compose.debug)
 
