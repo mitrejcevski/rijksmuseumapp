@@ -2,6 +2,7 @@ package nl.jovmit.rmapp.ui.artworks
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
@@ -10,6 +11,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -23,6 +27,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -119,7 +124,12 @@ private fun ArtWorksList(
   screenState: ArtWorksScreenState,
   onArtWorkClicked: (objectNumber: String) -> Unit
 ) {
-  LazyColumn(modifier = modifier) {
+  LazyVerticalGrid(
+    modifier = modifier,
+    columns = GridCells.Fixed(2),
+    horizontalArrangement = Arrangement.spacedBy(AppTheme.size.normal),
+    verticalArrangement = Arrangement.spacedBy(AppTheme.size.normal)
+  ) {
     items(items = screenState.artWorks, key = { it.id }) { item ->
       ArtWorkListItem(
         modifier = Modifier
@@ -140,13 +150,12 @@ private fun ArtWorkListItem(
     Box {
       AsyncImage(
         modifier = Modifier
-          .fillMaxWidth()
-          .aspectRatio(artWork.headerImage?.aspectRatio ?: 1f)
-          .height(artWork.headerImage?.height?.toDp() ?: 0.dp),
+          .fillMaxWidth(),
         model = ImageRequest.Builder(LocalContext.current)
-          .data(artWork.headerImage?.url)
+          .data(artWork.webImage?.url)
           .crossfade(true)
           .build(),
+        contentScale = ContentScale.FillWidth,
         contentDescription = artWork.longTitle,
       )
       Text(
