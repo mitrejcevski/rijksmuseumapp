@@ -1,6 +1,7 @@
 package nl.jovmit.rmapp.artworks
 
 import com.google.common.truth.Truth.assertThat
+import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.test.runTest
 import nl.jovmit.rmapp.CoroutineTestExtension
@@ -11,6 +12,7 @@ import nl.jovmit.rmapp.ui.artworks.ArtWorksViewModel
 import nl.jovmit.rmapp.ui.artworks.state.ArtWorksScreenState
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import kotlin.collections.emptyList
 
 @ExtendWith(CoroutineTestExtension::class)
 class LoadArtWorksTest {
@@ -32,7 +34,7 @@ class LoadArtWorksTest {
     viewModel.loadArtWorksList()
 
     assertThat(viewModel.screenState.value)
-      .isEqualTo(ArtWorksScreenState(artWorks = emptyList()))
+      .isEqualTo(ArtWorksScreenState(artWorks = persistentListOf()))
   }
 
   @Test
@@ -43,7 +45,7 @@ class LoadArtWorksTest {
     viewModel.loadArtWorksList()
 
     assertThat(viewModel.screenState.value)
-      .isEqualTo(ArtWorksScreenState(artWorks = listOf(mountain, river)))
+      .isEqualTo(ArtWorksScreenState(artWorks = persistentListOf(mountain, river)))
   }
 
   @Test
@@ -57,7 +59,7 @@ class LoadArtWorksTest {
     viewModel.loadArtWorksList()
 
     assertThat(viewModel.screenState.value)
-      .isEqualTo(ArtWorksScreenState(artWorks = listOf(mountain, river)))
+      .isEqualTo(ArtWorksScreenState(artWorks = persistentListOf(mountain, river)))
   }
 
   @Test
@@ -94,7 +96,7 @@ class LoadArtWorksTest {
     assertThat(deliveredStates).isEqualTo(
       listOf(
         ArtWorksScreenState(isLoading = true),
-        ArtWorksScreenState(artWorks = listOf(mountain, river))
+        ArtWorksScreenState(artWorks = persistentListOf(mountain, river))
       )
     )
   }

@@ -1,5 +1,8 @@
 package nl.jovmit.rmapp.domain
 
+import kotlinx.collections.immutable.ImmutableList
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import nl.jovmit.rmapp.domain.ArtWork.ArtWorkLinks
 import nl.jovmit.rmapp.domain.ArtWork.Image
 
@@ -12,7 +15,7 @@ class ArtWorkBuilder {
   private var longTitle: String = ""
   private var headerImage: Image? = null
   private var webImage: Image? = null
-  private var productionPlaces: List<String> = emptyList()
+  private var productionPlaces: ImmutableList<String> = persistentListOf()
 
   fun withLinks(links: ArtWorkLinks) = apply {
     this.links = links
@@ -43,7 +46,7 @@ class ArtWorkBuilder {
   }
 
   fun withProductionPlaces(vararg productionPlace: String) = apply {
-    this.productionPlaces = productionPlace.toList()
+    this.productionPlaces = productionPlace.toImmutableList()
   }
 
   fun build(): ArtWork {
