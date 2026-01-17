@@ -7,6 +7,7 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation3.runtime.entryProvider
@@ -18,6 +19,15 @@ fun NavRoot(
   deepLink: String?
 ) {
   val backStack = rememberNavBackStack(WelcomeDestination)
+  val deeplinkResolver = DeeplinkResolver(MainDestination.MainRoot())
+
+  LaunchedEffect(deepLink) {
+    deepLink?.let {
+      val destination = deeplinkResolver.resolveTree(it)
+      backStack.add(destination)
+    }
+  }
+
   NavDisplay(
     modifier = Modifier.fillMaxSize(),
     backStack = backStack,
@@ -27,13 +37,15 @@ fun NavRoot(
           label = "Welcome",
           color = Color.Blue.copy(.3f),
           onNavigate = {
-            backStack.add(MainDestination.MainRoot)
+            backStack.add(MainDestination.MainRoot())
             backStack.removeFirstOrNull()
           }
         )
       }
-      entry<MainDestination.MainRoot> {
+      entry<MainDestination.MainRoot> { destination ->
         MainScreen(
+          selectedTab = destination.selectedTab,
+          childDestination = destination.childDestination,
           openHomeItemDetails = {
             backStack.add(HomeItemDetails(it))
           }

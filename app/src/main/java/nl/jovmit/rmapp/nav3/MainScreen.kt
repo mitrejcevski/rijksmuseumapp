@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
@@ -30,6 +31,8 @@ import nl.jovmit.rmapp.ui.theme.AppTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
+  selectedTab: NavKey? = null,
+  childDestination: NavKey? = null,
   openHomeItemDetails: (itemId: String) -> Unit
 ) {
 
@@ -39,8 +42,10 @@ fun MainScreen(
     BottomBarItem("Settings", painterResource(R.drawable.ic_settings), MainDestination.Settings),
   )
 
+  //TODO make the correct initial tab selection based on the [selectedTab] parameter.
   var selectedItem by retain { mutableStateOf(bottomBarItems.first()) }
   val mainScreenBackStack = rememberNavBackStack(selectedItem.destination)
+  childDestination?.let { mainScreenBackStack.add(it) }
 
   Scaffold(
     contentWindowInsets = WindowInsets(),

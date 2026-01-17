@@ -16,4 +16,16 @@ class DeeplinkResolver(
     }
     return fallbackDestination
   }
+
+  fun resolveTree(deeplink: String): NavKey {
+    return when (val destination = resolve(deeplink)) {
+      is HomeItemDetails -> return destination
+      is UserDetails -> MainDestination.MainRoot(
+        selectedTab = MainDestination.Profile,
+        childDestination = destination
+      )
+
+      else -> fallbackDestination
+    }
+  }
 }

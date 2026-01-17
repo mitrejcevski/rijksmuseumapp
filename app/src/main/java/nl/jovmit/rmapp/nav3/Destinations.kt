@@ -10,7 +10,10 @@ data object WelcomeDestination : NavKey
 sealed class MainDestination : NavKey {
 
   @Serializable
-  data object MainRoot : MainDestination()
+  data class MainRoot(
+    val selectedTab: NavKey? = null,
+    val childDestination: NavKey? = null
+  ) : MainDestination()
 
   @Serializable
   data object Home : MainDestination()
