@@ -68,5 +68,5 @@ dependencies {
 
   testImplementation(libs.bundles.unit.test)
 
-  testRuntimeOnly(libs.junit.jupiter.engine)
+  testRuntimeOnly(libs.bundles.junit.runtime)
 }
